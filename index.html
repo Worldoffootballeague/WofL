@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premier Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pl-purple: #37003c;
+      --pl-pink: #ff2882;
+      --pl-cyan: #00ffb3;
+      --dark: #0e0e11;
+      --light: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--pl-purple), #220026);
+      color: var(--light);
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(circle at top, var(--pl-pink), var(--pl-purple));
+    }
+
+    header h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+
+    nav h2 {
+      font-weight: 800;
+      color: var(--pl-cyan);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+      margin-right: 15%;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 800;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--pl-pink);
+    }
+
+    section {
+      padding: 6rem 10%;
+      display: none;
+    }
+
+    section h2 {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      color: var(--pl-cyan);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: linear-gradient(160deg, #1a001f, #2b0030);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--pl-pink);
+    }
+
+    footer {
+      padding: 3rem;
+      text-align: center;
+      background: #120014;
+      color: #aaa;
+    }
+
+    footer span {
+      color: var(--pl-pink);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="logo.png" alt="WOFL Logo" style="height:50px;">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#tornei">Tornei</a></li>
+      <li><a href="#premi">Premi</a></li>
+      <li><a href="#teams">Teams</a></li>
+    </ul>
+  </nav>
+
+  <header id="home" style="display:flex">
+    <h1>WOFL</h1>
+    <p>World Of Football League</p>
+  </header>
+
+  <section id="tornei" class="page">
+    <h2>Tornei</h2>
+    <div class="grid">
+      <div class="card"><h3>Premier Cup</h3><p>Il torneo più prestigioso, solo per élite.</p></div>
+      <div class="card"><h3>Elite League</h3><p>Velocità, tecnica e spettacolo puro.</p></div>
+      <div class="card"><h3>Knockout Series</h3><p>Un errore e sei fuori.</p></div>
+    </div>
+  </section>
+
+  <section id="premi" class="page">
+    <h2>Premi</h2>
+    <div class="grid">
+      <div class="card"><h3>Golden Player</h3><p>Per il miglior giocatore assoluto.</p></div>
+      <div class="card"><h3>Top Scorer</h3><p>Il bomber dell'anno.</p></div>
+      <div class="card"><h3>Best Manager</h3><p>La mente dietro il successo.</p></div>
+    </div>
+  </section>
+
+  <section id="teams" class="page">
+    <h2>Teams</h2>
+    <div class="grid">
+      <div class="card"><h3>North Lions</h3><p>Forza fisica e mentalità vincente.</p></div>
+      <div class="card"><h3>Urban Kings</h3><p>Tiki-taka moderno e pressing alto.</p></div>
+      <div class="card"><h3>Royal United</h3><p>Storia, classe e potere.</p></div>
+    </div>
+  </section>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const links = document.querySelectorAll('nav a');
+
+    function showPage(id) {
+      pages.forEach(p => p.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo(0,0);
+    }
+
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const id = link.getAttribute('href').replace('#','');
+        if(id === 'home') {
+          pages.forEach(p => p.style.display = 'none');
+          document.getElementById('home').style.display = 'flex';
+        } else {
+          document.getElementById('home').style.display = 'none';
+          showPage(id);
+        }
+      });
+    });
+  </script>
+
+  <footer>
+    © 2025 <span>PremierStyle</span> • Il sito più bello della storia ⚡
+  </footer>
+
+</body>
+</html>
